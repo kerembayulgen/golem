@@ -90,6 +90,7 @@ def process_latex(inp: str) -> str:
     inp = re.sub(LATEX_REPLACE_MARKS, r"\\hfill[\1]", inp)
     inp = re.sub(r".\[Maximum mark: ([^a-z]*)\\]", r"[Maximum mark: \1]", inp)
     inp = re.sub(r"\*\*([^*\n]*?)\*\*", r"\\textbf{\1}", inp)
+    inp = re.sub(r"\_\_([^*\n]*?)\_\_", r"\\textit{\1}", inp)
     inp = re.sub(LATEX_REMOVE_NESTING, r"\\begin{\1}\2\\end{\1}", inp, flags=re.DOTALL)
 
     def tagstar_inside_aligned(m: re.Match[str]):
@@ -100,3 +101,4 @@ def process_latex(inp: str) -> str:
 
     inp += LATEX_FILE_END
     return inp
+
