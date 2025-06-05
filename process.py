@@ -28,9 +28,18 @@ LATEX_FILE: str = r"""
 \usepackage{tikz}
 \usepackage{siunitx}
 \usepackage[most]{tcolorbox}
+\usepackage{textcomp}
 
-\newcommand{\answer}{}
-
+\newcommand{\m}[2]{\frac{#1}{#2}}
+\newcommand{\s}[1]{\sqrt{#1}}
+\newcommand{\answer}[1]{#1}
+\newcommand{\vv}[1]{\overrightarrow{#1}}
+\newcommand{\medmath}[1]{#1}
+\newcommand{\qref}[1]{\hspace{0.25em}\htmlClass{qref}{#1}}
+\newcommand{\floor}[1]{\lfloor{#1}\rfloor}
+\newcommand{\ceil}[1]{\lceil{#1}\rceil}
+\newcommand{\vspacecmd}[1]{}
+\newcommand{\intertextcmd}[1]{\text{#1}\notag\\}
 \newcommand{\cancel}[1]{%
 	\tikz[baseline=(X.base)]{
 		\node[inner sep=0pt, outer sep=0pt] (X) {$#1$};
