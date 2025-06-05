@@ -13,6 +13,7 @@ LATEX_REPLACE_IMAGE: str = r"!\[([^\]]*)\]\(([^)]+)\)"
 LATEX_NESTING_ALT: str = r"$$\\begin{\1}\2\\end{\1}$$"
 
 LATEX_FILE: str = r"""
+% !TeX TXS-program:compile = txs:///pdflatex/[-shell-escape]
 \documentclass{article}
 
 \usepackage{amsmath}
@@ -29,7 +30,9 @@ LATEX_FILE: str = r"""
 \usepackage{tabto}
 
 \TabPositions{1cm, 2cm, 3cm, 4cm}
-
+\makeatletter
+\def\UTFviii@undefined@err#1{}
+\makeatother
 
 \begin{document}
 
@@ -83,5 +86,7 @@ def process_latex(inp: str) -> str:
     inp = inp.replace(":::", "")
     inp = re.sub(LATEX_REMOVE_NESTING, LATEX_NESTING_ALT, inp, flags=re.DOTALL)
     inp = convert_indentation_to_tabs(inp)
+    inp = inp.replace("$$\\begin{align*}", "\\[\\begin{aligned}")
+    inp = inp.replace("\\end{align*}$$", "\\end{aligned}\\]")
     inp += LATEX_FILE_END
     return inp
