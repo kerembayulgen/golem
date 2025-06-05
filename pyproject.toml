@@ -1,0 +1,10 @@
+[project]
+name = "golem"
+version = "0.1.0"
+description = "Extract questions and images from RevisionVillage"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pycryptodome>=3.23.0",
+    "requests>=2.32.3",
+]
